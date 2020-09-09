@@ -1,14 +1,6 @@
 MTK_PLATFORM := $(subst ",,$(CONFIG_MTK_PLATFORM))
 
-ifneq ($(LINUX_KERNEL_VERSION),)
-CONFIG_KERVER_VERSION := $(word 2,$(subst -, ,$(LINUX_KERNEL_VERSION)))
-endif
-
-ifeq ($(CONFIG_KERVER_VERSION),)
-$(error CONFIG_KERVER_VERSION is not defined)
-endif
-
-MET_ROOT_DIR := $(srctree)/../vendor/mediatek/kernel_modules/met_drv/$(CONFIG_KERVER_VERSION)
+MET_ROOT_DIR := kernel/mediatek/modules/met_drv/4.14
 MET_COMMON_DIR := $(wildcard $(MET_ROOT_DIR)/common)
 MET_PLF_DIR := $(wildcard $(MET_ROOT_DIR)/$(MTK_PLATFORM))
 MET_BUILD_DEFAULT := n

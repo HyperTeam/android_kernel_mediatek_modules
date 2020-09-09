@@ -1,16 +1,13 @@
 LOCAL_PATH := $(call my-dir)
 
-ifneq ($(LINUX_KERNEL_VERSION),)
-TEMP_LINUX_KERNEL_VERSION := $(LINUX_KERNEL_VERSION)
-export LINUX_KERNEL_VERSION=$(TEMP_LINUX_KERNEL_VERSION)
-endif
-
-ifneq (,$(filter $(word 2,$(subst -, ,$(LINUX_KERNEL_VERSION))),$(subst /, ,$(LOCAL_PATH))))
-
 include $(CLEAR_VARS)
 LOCAL_MODULE := met.ko
+LOCAL_MODULE_CLASS := ETC
+LOCAL_MODULE_TAGS := optional
+LOCAL_MULTILIB := first
+LOCAL_MODULE_PATH := $(TARGET_OUT_VENDOR)/lib/modules
 LOCAL_STRIP_MODULE := true
 
-include $(MTK_KERNEL_MODULE)
+include $(EXTERNAL_KMODULES)
 
 endif # Kernel version matches current path
